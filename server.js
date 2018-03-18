@@ -26,11 +26,6 @@ module.exports = {
   connection
 };
 
-// Bootstrap models
-fs.readdirSync(models)
-  .filter(file => ~file.indexOf('.js'))
-  .forEach(file => require(join(models, file)));
-
 // Bootstrap routes
 require('./app/config/passport')(passport);
 require('./app/config/express.config')(app, passport);
@@ -39,7 +34,8 @@ var fileUpload = require('express-fileupload');
 
 app.use(fileUpload());
 //ADMIN CRUD
-app.post('/admin/upload', uploadXLSX.upload); //upload excel file //
+app.post('/admin/upload', uploadXLSX.postUpload); //upload excel file //
+app.get('/admin/database', uploadXLSX.getUpload);
 app.get('/', base.index); //show all DB //
 app.get('/admin/users', authController.isAuthenticated, base.show); //show all users
 app.delete('/admin/user/:id', authController.isAuthenticated, base.destroy); //delete user by id

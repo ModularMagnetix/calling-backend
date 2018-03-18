@@ -25,9 +25,7 @@ var Schema = mongoose.Schema;
 
 autoIncrement.initialize(connection);
 
-var Clients = new Schema({
-    
-},{ "strict": false });
+var Clients = new Schema({},{ "strict": false });
 
 var Status = new Schema({
     status:{
