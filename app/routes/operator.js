@@ -1,5 +1,9 @@
 const Script = require('../models/script.model');
 const StatusModel = require('../models/base.model');
+var mongoose = require('mongoose');
+var config = require('../config');
+var env = process.env.NODE_ENV || 'development';
+const url = config.db;
 const log = require('../libs/log')(module);
 exports.postComment = function (req, res) {
     res.json({message: 'POST comment endpont'}) //show all DB
@@ -36,9 +40,15 @@ exports.postComment = function (req, res) {
     });
   }
     
-
+  function find (name, query, cb) {
+    mongoose.connection.db.collection(name, function (err, collection) {
+       collection.find(query).toArray(cb);
+   });
+}
   exports.getPhone = function (req, res) {
-    res.json({message: 'this endpoint should get phonenumber by id'}) //show all DB
+    find(req.body.base, {_id : req.body._id}, function (err, docs) {
+      return res.send(docs);
+  });   
   }
 
   exports.getScript = function (req, res) {

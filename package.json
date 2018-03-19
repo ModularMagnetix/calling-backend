@@ -37,6 +37,7 @@
     "jsonfile": "^4.0.0",
     "method-override": "^2.3.10",
     "mongo-xlsx": "^1.0.12",
+    "mongodb": "^3.0.4",
     "mongoose": "^5.0.9",
     "mongoose-auto-increment": "^5.0.1",
     "mongoose-user": "0.0.1",

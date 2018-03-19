@@ -51,6 +51,7 @@ app.post('/workspace/comments', operator.postComment);
 app.get('/workspace/statics', operator.getStatic);
 app.post('/workspace/statics', operator.postStatic);
 app.get('/workspace/script', operator.getScript);
+app.post('/workspace/numbers',operator.getPhone);
 //
 
 //MANAGER CRUD
