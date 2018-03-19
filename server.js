@@ -16,7 +16,8 @@ const app = express();
 const connection = connect();
 const base = require('./app/routes/base');
 const operator =require('./app/routes/operator');
-const uploadXLSX = require('./app/routes/upload')
+const uploadXLSX = require('./app/routes/upload');
+const manager = require('./app/routes/manager');
 const authController = require('./app/controllers/auth');
 
 var path = require('path');
@@ -44,7 +45,7 @@ app.post('/admin/user/register', base.register);
 //USER CRUD
 app.post('/login', base.login);
 app.get('/logout', authController.isAuthenticated, base.logout);
-app.get('/workspace', authController.isAuthenticated, base.workspace);
+app.get('/workspace', authController.isAuthenticated, operator.workspace);
 app.get('/workspace/comments', operator.getComment);
 app.post('/workspace/comments', operator.postComment);
 app.get('/workspace/statics', operator.getStatic);
@@ -53,7 +54,10 @@ app.get('/workspace/script', operator.getScript);
 //
 
 //MANAGER CRUD
-
+app.get('/manager/database', uploadXLSX.getUpload);
+app.post('/manager/script', manager.postScript);
+app.get('/manager/script', manager.getScript);
+app.delete('/manager/script/delete/:script_id', manager.dropScript);
 //
 app.use(error);
 app.listen(port);

@@ -1,3 +1,5 @@
+const Script = require('../models/script.model');
+const log = require('../libs/log')(module);
 exports.postComment = function (req, res) {
     res.json({message: 'POST comment endpont'}) //show all DB
   }
@@ -20,5 +22,15 @@ exports.postComment = function (req, res) {
   }
 
   exports.getScript = function (req, res) {
-      res.json({message: 'this endpoint should get workscript'})
+    Script.find(function(err, script) {
+      if (err)
+        res.send(err);
+  
+      res.json(script);
+    });
+  }
+
+  exports.workspace = function (req, res) {
+    res.json({message: 'workspace'}); //show all users
+    
   }

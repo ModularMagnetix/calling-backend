@@ -15,11 +15,6 @@ const User = require('../models/user.auth.model');
     });
   }
    ////////////////////////////////////////////////////////////////// 
-  exports.update = function (req, res) {
-    res.send('This is not implemented now'); //update DB
-    
-  }
-   ////////////////////////////////////////////////////////////////// 
 
   exports.destroy = function (req, res) {
     res.send('This is not implemented now'); //delete user by id
@@ -46,12 +41,7 @@ const User = require('../models/user.auth.model');
     res.send({status : 'logout'});
   }
  ////////////////////////////////////////////////////////////////// 
-
-  exports.workspace = function (req, res) {
-    res.json({message: 'workspace'}); //show all users
-    
-  }
- ////////////////////////////////////////////////////////////////// 
+ 
 
   exports.login = function(req, res){
     User.findOne({
