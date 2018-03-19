@@ -25,10 +25,8 @@ var Schema = mongoose.Schema;
 
 autoIncrement.initialize(connection);
 
-var Clients = new Schema({},{ "strict": false });
-
 var Status = new Schema({
-    status:{
+    
         no_answer:  {
           type:String,
           default: ''
@@ -45,28 +43,22 @@ var Status = new Schema({
           type:String,
           default: ''
         },
-        appointm1ent: {
+        appointment: {
           type:String,
           default: ''
         },
-        comment:      String
-    },
-    appointment: {
         appointment_time: String,
         age:              Number,
         comment:          String,
-        came:          {
-          type:String,
-          default: ''
-        },
+        came:          {type:String, default: ''},
         month:            String,
         close:            String,
-        operator:         String
-    }
+        operator:         String,
+        comment:      String
 });
   
-Clients.plugin(autoIncrement.plugin, 'Clients');
+Status.plugin(autoIncrement.plugin, 'Status');
 
-var ClientModel = mongoose.model('Clients', Clients);
+var StatusModel = mongoose.model('Status', Status);
 
-module.exports.ClientModel = ClientModel;
+module.exports = StatusModel;
